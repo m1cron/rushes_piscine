@@ -1,10 +1,9 @@
 #include "try_resolve.h"
 #include "checks.h"
 
-t_bool		ft_check_grid(int **sudoku, int i, int x, int y, int size)
+t_bool		ft_check_grid_row(int **sudoku, int i, int y, int size)
 {
 	int row;
-	int col;
 
 	row = 1;
 	while (row <= size)
@@ -13,6 +12,13 @@ t_bool		ft_check_grid(int **sudoku, int i, int x, int y, int size)
 			return (true);
 		row++;
 	}
+	return (false);
+}
+
+t_bool ft_check_grid_col(int **sudoku, int i, int x, int size)
+{
+	int col;
+
 	col = 1;
 	while (col <= size)
 	{
@@ -20,7 +26,7 @@ t_bool		ft_check_grid(int **sudoku, int i, int x, int y, int size)
 			return (true);
 		col++;
 	}
-	return (0);
+	return (true);
 }
 
 t_bool		ft_pls_try_resolve(int **sudoku, int size, int x, int y)
@@ -30,7 +36,7 @@ t_bool		ft_pls_try_resolve(int **sudoku, int size, int x, int y)
 	i = 1;
 	while (true)
 	{
-		while (i <= size && ft_check_grid(sudoku, i, x, y, size))
+		while (i <= size && ft_check_grid_row(sudoku, i, y, size) && ft_check_grid_col(sudoku, i, x, size))
 			i++;
 		if (i <= size)
 			sudoku[x][y] = i;
