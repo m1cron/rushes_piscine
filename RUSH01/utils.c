@@ -16,10 +16,10 @@ void	ft_print_sudoku_grid(int **arr, int max_value)
 	int		x;
 	int		y;
 
-	x = 0;
+	x = 1;
 	while (x <= max_value)
 	{
-		y = 0;
+		y = 1;
 		while (y <= max_value)
 		{
 			ft_putchar(arr[x][y] + '0');
@@ -53,10 +53,4 @@ int		ft_digits_in_str(char *str)
 		i++;
 	}
 	return (n);
-}
-
-
-int		ft_return_size_from_argv(char *str)
-{
-	return (ft_digits_in_str(str) / 4);
 }
