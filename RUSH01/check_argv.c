@@ -16,7 +16,7 @@ void	ft_remove_space(char *str)
 	str[i] = '\0';
 }
 
-int ft_argv_is_valid(char *str, int size)
+t_bool ft_argv_is_valid(char *str, int size)
 {
     int i;
 
@@ -25,12 +25,12 @@ int ft_argv_is_valid(char *str, int size)
     {
         if (i % 2 == 0)
             if(!(str[i] <= size + '0' && str[i] >= '1'))
-                return (1);
+                return (true);
         i++;
     }
     i = (i + 1) / 2;
     if (!(i == 12 || i == 16 || i == 20 || i == 24 || i == 28 || i == 32 || i == 36))
-        return (1);
+        return (true);
     ft_remove_space(str);
-    return (0);
+    return (false);
 }

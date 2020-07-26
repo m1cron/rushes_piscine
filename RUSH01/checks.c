@@ -1,6 +1,6 @@
 #include "checks.h"
 
-int		ft_check_up_cols(int **sudoku, int x, int size)
+t_bool		ft_check_up_cols(int **sudoku, int x, int size)
 {
 	int		capacity;
 	int		y;
@@ -21,12 +21,12 @@ int		ft_check_up_cols(int **sudoku, int x, int size)
 			i++;
 	}
 	if (capacity == sudoku[x][0])
-		return (0);
+		return (false);
 	else
-		return (1);
+		return (true);
 }
 
-int		ft_check_down_cols(int **sudoku, int x, int size)
+t_bool		ft_check_down_cols(int **sudoku, int x, int size)
 {
 	int		capacity;
 	int		y;
@@ -47,12 +47,12 @@ int		ft_check_down_cols(int **sudoku, int x, int size)
 			i++;
 	}
 	if (capacity == sudoku[x][size + 1])
-		return (0);
+		return (false);
 	else
-		return (1);
+		return (true);
 }
 
-int		ft_check_left_rows(int **sudoku, int y, int size)
+t_bool		ft_check_left_rows(int **sudoku, int y, int size)
 {
 	int		capacity;
 	int		x;
@@ -73,12 +73,12 @@ int		ft_check_left_rows(int **sudoku, int y, int size)
 			i++;
 	}
 	if (capacity == sudoku[0][y])
-		return (0);
+		return (false);
 	else
-		return (1);
+		return (true);
 }
 
-int		ft_check_right_rows(int **sudoku, int y, int size)
+t_bool		ft_check_right_rows(int **sudoku, int y, int size)
 {
 	int		capacity;
 	int		x;
@@ -99,12 +99,12 @@ int		ft_check_right_rows(int **sudoku, int y, int size)
 			i++;
 	}
 	if (capacity == sudoku[size + 1][y])
-		return (0);
+		return (false);
 	else
-		return (1);
+		return (true);
 }
 
-int		ft_check_all_sides(int **sudoku, int size)
+t_bool		ft_check_all_sides(int **sudoku, int size)
 {
 	int		i;
 
@@ -112,14 +112,14 @@ int		ft_check_all_sides(int **sudoku, int size)
 	while (i <= size)
 	{
 		if (ft_check_up_cols(sudoku, i, size))
-			return (1);
+			return (true);
 		if (ft_check_down_cols(sudoku, i, size))
-			return (1);
+			return (true);
 		if (ft_check_left_rows(sudoku, i, size))
-			return (1);
+			return (true);
 		if (ft_check_right_rows(sudoku, i, size))
-			return (1);
+			return (true);
 		i++;
 	}
-	return (0);
+	return (false);
 }

@@ -5,10 +5,10 @@ void	ft_putchar(char c)
 	write(1, &c, 1);
 }
 
-int	ft_error(void)
+t_bool	ft_error(void)
 {
 	write(1, "Error\n", 6);
-    return (1);
+    return (true);
 }
 
 void	ft_print_sudoku_grid(int **arr, int max_value)
@@ -32,11 +32,11 @@ void	ft_print_sudoku_grid(int **arr, int max_value)
 	}
 }
 
-int		ft_is_digit(char c)
+t_bool		ft_is_digit(char c)
 {
 	if (c >= '0' && c <= '9')
-		return (0);
-	return (1);
+		return (false);
+	return (true);
 }
 
 int		ft_digits_in_str(char *str)

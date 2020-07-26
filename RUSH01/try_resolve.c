@@ -1,7 +1,7 @@
 #include "try_resolve.h"
 #include "checks.h"
 
-int		ft_check_grid(int **sudoku, int i, int x, int y, int size)
+t_bool		ft_check_grid(int **sudoku, int i, int x, int y, int size)
 {
 	int row;
 	int col;
@@ -10,25 +10,25 @@ int		ft_check_grid(int **sudoku, int i, int x, int y, int size)
 	while (row <= size)
 	{
 		if (i == sudoku[row][y])
-			return (1);
+			return (true);
 		row++;
 	}
 	col = 1;
 	while (col <= size)
 	{
 		if (i == sudoku[x][col])
-			return (1);
+			return (true);
 		col++;
 	}
 	return (0);
 }
 
-int		ft_pls_try_resolve(int **sudoku, int size, int x, int y)
+t_bool		ft_pls_try_resolve(int **sudoku, int size, int x, int y)
 {
 	int i;
 
 	i = 1;
-	while (1)
+	while (true)
 	{
 		while (i <= size && ft_check_grid(sudoku, i, x, y, size))
 			i++;
@@ -37,7 +37,7 @@ int		ft_pls_try_resolve(int **sudoku, int size, int x, int y)
 		else
 		{
 			sudoku[x][y] = 0;
-			return (1);
+			return (true);
 		}
 		if (x == size && y == size)
 		{
@@ -46,25 +46,25 @@ int		ft_pls_try_resolve(int **sudoku, int size, int x, int y)
 				if (i >= size)
 				{
 					sudoku[x][y] = 0;
-					return (1);
+					return (true);
 				}
 				else
 					continue;
 			}
 			else
-				return (0);
+				return (false);
 		}
 		if (x == size)
 		{
 			if (ft_pls_try_resolve(sudoku, size, 1, y + 1))
 				continue;
-			return (0);
+			return (false);
 		}
 		else
 		{
 			if (ft_pls_try_resolve(sudoku, size, x + 1, y))
 				continue;
-			return (0);
+			return (false);
 		}
 	}
 }

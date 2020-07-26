@@ -2,6 +2,7 @@
 #include "parsing.h"
 #include "try_resolve.h"
 #include "utils.h"
+#include "ft_boolean.h"
 
 int		main(int argc, char **argv)
 {
@@ -19,5 +20,5 @@ int		main(int argc, char **argv)
 		return ft_error();
 	ft_print_sudoku_grid(sudoku, inner_grid_size + 1);
 	ft_pls_free_mem(sudoku, inner_grid_size);
-	return (0);
+	return (SUCCESS);
 }

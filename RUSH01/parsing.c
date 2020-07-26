@@ -28,12 +28,12 @@ int **ft_sudoku_alocating(int size, char *argv)
     int j;
     int **sudoku;
 
-    if (!(sudoku = (int **)malloc(sizeof(int *) * size + 2)))
-		return (0);
+    if (!(sudoku = (int **)malloc(sizeof(int *) * (size + 2))))
+		return (NULL);
 	i = -1;
 	while (++i < size + 2)
-		if (!(sudoku[i] = (int *)malloc(sizeof(int) * size + 2)))
-			return (0);
+		if (!(sudoku[i] = (int *)malloc(sizeof(int) * (size + 2))))
+			return (NULL);
 	i = -1;
 	while (++i < size + 2)
 	{
@@ -45,13 +45,13 @@ int **ft_sudoku_alocating(int size, char *argv)
 	return (sudoku);
 }
 
-int **pls_free_mem(int **sudoku, int size)
+int **ft_pls_free_mem(int **sudoku, int size)
 {
     int i;
 
-    i = -1;
-    while (++i < size + 2)
-        free(sudoku[i]);
+    i = 0;
+    while (i < size + 2)
+        free(sudoku[i++]);
     free(sudoku); 
     return (NULL);
 }
