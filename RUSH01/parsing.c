@@ -44,3 +44,13 @@ int **ft_sudoku_alocating(int size, char *argv)
 	ft_pars_argv_in_grid(sudoku, argv, size);
 	return (sudoku);
 }
+
+void **pls_free_mem(int **sudoku, int size)
+{
+    int i;
+
+    i = 0;
+    while (++i < size + 2)
+        free(sudoku[i]);
+    free(sudoku);     
+}
