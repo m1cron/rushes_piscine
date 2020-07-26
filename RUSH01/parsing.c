@@ -45,12 +45,13 @@ int **ft_sudoku_alocating(int size, char *argv)
 	return (sudoku);
 }
 
-void **pls_free_mem(int **sudoku, int size)
+int **pls_free_mem(int **sudoku, int size)
 {
     int i;
 
-    i = 0;
+    i = -1;
     while (++i < size + 2)
         free(sudoku[i]);
-    free(sudoku);     
+    free(sudoku); 
+    return (NULL);
 }

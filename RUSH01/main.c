@@ -18,6 +18,6 @@ int		main(int argc, char **argv)
 	if (ft_pls_try_resolve(sudoku, inner_grid_size, 1, 1))
 		return ft_error();
 	ft_print_sudoku_grid(sudoku, inner_grid_size + 1);
-	pls_free_mem(sudoku, inner_grid_size);
+	ft_pls_free_mem(sudoku, inner_grid_size);
 	return (0);
 }
