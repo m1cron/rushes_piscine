@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <stdio.h>
 
 char	*ft_getnb(int fd)
 {
@@ -9,7 +10,7 @@ char	*ft_getnb(int fd)
 	char	c[1];
 	char	*str;
 
-	if (!(str = malloc(sizeof(char) * 128)))
+	if (!(str = malloc(sizeof(char) * SIZE)))
 		exit(1);
 	i = 0;
 	read(fd, c, 1);
@@ -38,6 +39,7 @@ char	*ft_getval(int fd, char *c)
 		read(fd, c, 1);
 		i++;
 	}
+	str[i] = '\0';
 	return (str);
 }
 
@@ -50,12 +52,12 @@ t_list	*process(char *file)
 	char *tmp;
 
 	fd = open(file, O_RDONLY);
-	if (fd == -1 || !(tab = malloc(sizeof(t_list) * 33)))
+	if (fd == -1 || !(tab = malloc(sizeof(t_list) * SIZE)))
 		exit(1);
 	i = 0;
-	while (i < 32)
+	while (i < SIZE)
 	{
-		tab[i].nb = ft_atoi(ft_getnb(fd));
+		tab[i].nb = ft_getnb(fd);
 		read(fd, c, 1);
 		while (c[0] == ' ')
 			read(fd, c, 1);
@@ -70,4 +72,28 @@ t_list	*process(char *file)
 	}
 	close(fd);
 	return (tab);
+}
+
+int search_in_map(t_list *map, char *str)
+{
+	int i = 0;
+	while (i < SIZE)
+	{
+		if (ft_strcmp(map[i].nb, str) == 0)
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+
+int search_in_map2(t_list *map, char str)
+{
+	int i = 0;
+	while (i < SIZE)
+	{
+		if (ft_strcmp(map[i].nb, &str) == 0)
+			return (i);
+		i++;
+	}
+	return (-1);
 }

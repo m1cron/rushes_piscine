@@ -2,6 +2,17 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <stdio.h>
+
+int		ft_strlen(char *str)
+{
+	int		i;
+
+	i = 0;
+	while (str[i] != '\0')
+		i++;
+	return (i);
+}
 
 char	*ft_strdup(char *src)
 {
@@ -24,36 +35,76 @@ char	*ft_strdup(char *src)
 	return (dst);
 }
 
-int	ft_atoi(const char *str)
-{
-	int	res;
-	int	negative;
-
-	negative = 1;
-	res = 0;
-	while (*str && (*str == ' ' || *str == '\n' || *str == '\t' ||
-			*str == '\v' || *str == '\f' || *str == '\r'))
-		++str;
-	if (*str == '-')
-		negative = -1;
-	if (*str == '-' || *str == '+')
-		++str;
-	while (*str && *str >= '0' && *str <= '9')
-	{
-		res = res * 10 + (*str - 48);
-		++str;
-	}
-	return (res * negative);
-}
-
 void	ft_putstr(char *str)
 {
+	while (*str)
+		write(1, str++, 1);
+}
+
+int		ft_strcmp(char *s1, char *s2)
+{
+	while ((*s1 == *s2) && *s1 != '\0')
+	{
+		s1++;
+		s2++;
+	}
+	return (*(unsigned char *)s1 - *(unsigned char *)(s2));
+}
+
+char	*ft_strcpy(char *dest, char *src)
+{
+	char *temp;
+
+	temp = dest;
+	while (*src != '\0')
+		*(temp++) = *(src++);
+	*temp = '\0';
+	return (dest);
+}
+
+char	*ft_strcat(char *dest, const char *src)
+{
 	int i;
+	int y;
 
 	i = 0;
-	while (str[i])
+	y = 0;
+	while (dest[i])
 	{
-		write(1, &str[i], 1);
 		i++;
 	}
+	while (src[y])
+	{
+		dest[i] = src[y];
+		i++;
+		y++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}
+
+char	*ft_strncat(char *dest, char *src, int nb)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (dest[i] != '\0')
+		i++;
+	j = 0;
+	while (src[j] != '\0' && j < nb)
+	{
+		dest[i] = src[j];
+		i++;
+		j++;
+	}
+	dest[i] = '\0';
+	return (dest);
+}
+
+void ft_concat (char s0, char s1, char *s)
+{
+	s[0] = s0;
+	s[1] = s1;
+	s[2] = '\0';
 }
